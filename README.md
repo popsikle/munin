@@ -32,7 +32,7 @@ Attributes
 ----------
 - `node['munin']['web_server_port']` - port that the munin vhost runs on, default 80
 - `node['munin']['sysadmin_email']` - default email address for serveradmin in vhost.
-- `node['munin']['server_auth_method']` - the authentication method to use, default is openid. Any other value will use htauth basic with an htpasswd file.
+- `node['munin']['server_auth_method']` - the authentication method to use, default is openid. 'basic' will use htauth basic with an htpasswd file, anything else will disable authentication.
 - `node['munin']['multi_environment_monitoring']` - allow multi-environment monitoring.  Default is false. Allowed values are 'true', 'false' or a list of names of chef-environments.
 - `node['munin']['server_role']` - role of the munin server. Default is monitoring.
 - `node['munin']['server_list']` - list of server ip addresses. This overrides `server_role`. Default is `nil`.

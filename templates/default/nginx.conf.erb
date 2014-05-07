@@ -11,9 +11,15 @@ server {
     root <%= node['munin']['docroot'] %>;
   }
 
+  <% if node['munin']['server_auth_method'] == 'basic' -%>
   location / {
     auth_basic "Munin Server";
     auth_basic_user_file <%= File.join(node['munin']['basedir'], 'htpasswd.users') %>;
     root <%= node['munin']['docroot'] %>;
   }
+  <% else -%>
+  location / {
+    root <%= node['munin']['docroot'] %>;
+  }
+  <% end -%>
 }

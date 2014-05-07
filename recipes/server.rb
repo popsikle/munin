@@ -133,7 +133,7 @@ when 'openid'
   else
     fail 'OpenID is unsupported on non-apache installs'
   end
-else
+when 'basic'
   template "#{node['munin']['basedir']}/htpasswd.users" do
     source 'htpasswd.users.erb'
     owner  'munin'
