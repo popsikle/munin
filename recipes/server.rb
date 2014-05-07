@@ -81,7 +81,11 @@ if munin_servers.empty?
   munin_servers = [node]
 end
 
-munin_servers.sort! { |a, b| a['fqdn'] <=> b['fqdn'] }
+begin
+  munin_servers.sort! { |a, b| a['fqdn'] <=> b['fqdn'] }
+rescue
+  Chef::Log.info 'Could not sort client nodes by fqdn'
+end
 
 case node['platform']
 when 'freebsd'
