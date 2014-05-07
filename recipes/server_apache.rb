@@ -23,6 +23,8 @@ end
 
 include_recipe 'apache2::default'
 include_recipe 'apache2::mod_rewrite'
+include_recipe 'apache2::mod_cgi'
+
 
 apache_site '000-default' do
   enable false

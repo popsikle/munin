@@ -27,6 +27,47 @@
   </Location>
 <% end -%>
 
+<% if node.platform_family?('rhel', 'fedora') -%>
+  <directory <%= node['munin']['docroot'] %>>
+  ExpiresActive On
+  ExpiresDefault M310
+  </directory>
+<% end -%>
+
+  ScriptAlias /munin-cgi/munin-cgi-graph <%= node['munin']['cgiroot'] %>/munin-cgi-graph
+  <Location /munin-cgi/munin-cgi-graph>
+    Options +ExecCGI
+    <IfModule mod_fcgid.c>
+      SetHandler fcgid-script
+    </IfModule>
+    <IfModule mod_fastcgi.c>
+      SetHandler fastcgi-script
+    </IfModule>
+    <IfModule !mod_fastcgi.c>
+      <IfModule !mod_fcgid.c>
+        SetHandler cgi-script
+      </IfModule>
+    </IfModule>
+    Allow from all
+  </Location>
+
+  ScriptAlias /munin-cgi/munin-cgi-html <%= node['munin']['cgiroot'] %>/munin-cgi-html
+  <Location /munin-cgi/munin-cgi-html>
+    Options +ExecCGI
+    <IfModule mod_fcgid.c>
+      SetHandler fcgid-script
+    </IfModule>
+    <IfModule mod_fastcgi.c>
+      SetHandler fastcgi-script
+    </IfModule>
+    <IfModule !mod_fastcgi.c>
+      <IfModule !mod_fcgid.c>
+        SetHandler cgi-script
+      </IfModule>
+    </IfModule>
+    Allow from all
+  </Location>
+
   RewriteEngine On
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
   RewriteRule ^(.*)index\.html$ $1 [R=301,L]
