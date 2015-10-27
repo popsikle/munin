@@ -26,6 +26,7 @@ default['munin']['multi_environment_monitoring'] = false
 default['munin']['web_server'] = 'apache'
 default['munin']['web_server_port'] = 80
 default['munin']['public_domain'] = nil
+default['munin']['update_increment'] = 5
 
 case node['platform']
 when 'arch'

@@ -99,18 +99,18 @@ when 'arch'
   cron 'munin-graph-html' do
     command '/usr/bin/munin-cron'
     user    'munin'
-    minute  '*/5'
+    minute  "*/#{node['munin']['update_increment']}"
   end
 when 'freebsd'
   cron 'munin-graph-html' do
     command        '/usr/local/bin/munin-cron'
     user           'munin'
-    minute         '*/5'
+    minute         "*/#{node['munin']['update_increment']}"
     ignore_failure true
   end
 else
-  cookbook_file '/etc/cron.d/munin' do
-    source 'munin-cron'
+  template '/etc/cron.d/munin' do
+    source 'munin-cron.erb'
     mode   '0644'
     owner  'root'
     group  node['munin']['root']['group']
