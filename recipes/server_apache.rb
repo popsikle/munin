@@ -25,6 +25,9 @@ include_recipe 'apache2::default'
 include_recipe 'apache2::mod_rewrite'
 include_recipe 'apache2::mod_cgi'
 
+if node['platform'] == 'ubuntu' && node['platform_version'] == '14.04'
+  package 'libcgi-fast-perl'
+end
 
 apache_site '000-default' do
   enable false
