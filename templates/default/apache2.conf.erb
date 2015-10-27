@@ -25,6 +25,10 @@
     AuthUserFile "<%= node['munin']['basedir'] %>/htpasswd.users"
     require valid-user
   </Location>
+<% else -%>
+  <Location />
+    Require all granted
+  </Location>
 <% end -%>
 
 <% if node.platform_family?('rhel', 'fedora') -%>
