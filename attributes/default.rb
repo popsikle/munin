@@ -18,6 +18,7 @@
 #
 
 default['munin']['sysadmin_email'] = 'ops@example.com'
+default['munin']['cron_email'] = 'root'
 default['munin']['server_role'] = 'monitoring'
 default['munin']['server_list'] = nil
 default['munin']['server_auth_method'] = 'openid'
